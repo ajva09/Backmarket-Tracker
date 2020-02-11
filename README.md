@@ -4,11 +4,11 @@
 You can send notification to your Android smartphone when a backmarket product drops below a wanted price !
 Only work with Android devices (background notifications capabilities)
 
--- In the config.cfg file --
+-- In the config.cfg file --<br/>
 Create a notify.run channel here: https://notify.run/
 Change the url in the config.cfg file to yours
 
--- At the end of the script --
+-- At the end of the script --<br/>
 Change or Add the Backmarket url(s) of the desired product(s) into 'url_list' i.e differents colors and/or internal storage options
 Change the 'wanted_price', a notification will be sent once it drops below
 
