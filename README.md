@@ -1,10 +1,21 @@
-# backmarket-tracker
- BackMarket Price Tracker and Notifier
+# Backmarket Price Tracker
+ BackMarket Price Tracker and Notifier v1.2
 
- With an API key and Token From PushOver, you can send notification to your iPhone / Android smartphone
+You can send notification to your Android smartphone when a backmarket product drops below a wanted price !
+Only work with Android devices (background notifications capabilities)
 
+-- In the config.cfg file --
+Create a notify.run channel here: https://notify.run/
+Change the url in the config.cfg file to yours
 
-TODO: Use pycurl or requests module to scrape the page
+-- At the end of the script --
+Change or Add the Backmarket url(s) of the desired product(s) into 'url_list' i.e differents colors and/or internal storage options
+Change the 'wanted_price', a notification will be sent once it drops below
 
- ! Only Works with linux !
+Subscribe to your notidy.run channel on your mobile device
 
+If you have any problems with the script, please submit a ticket under the 'Issues' tab !
+
+Support for iOS comming soon (PushOver app)
+
+# 0xlazY #
