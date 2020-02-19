@@ -1,6 +1,8 @@
 # Backmarket Price Tracker
  BackMarket Price Tracker and Notifier v1.2<br/>
 
+-- Tested w/ backmarket.fr, untested for backmarket.com, backmarket.co.uk, backmarket.es, backmarket.it etc... -- <br/>
+
 You can send notification to your Android smartphone when a backmarket product drops below a wanted price !<br/>
 Only work with Android devices (background notifications capabilities)
 
