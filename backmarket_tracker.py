@@ -77,3 +77,4 @@ if __name__ == '__main__':
     price_wanted = 450 # Price of the product below which you want to receive a notification
 
     main()
+    ##dev
