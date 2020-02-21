@@ -22,8 +22,9 @@ def get_currency(url):
     }
 
     splited_url = url.split('.')
+    #print(splited_url) ## debug
     
-    if splited_url[3] == 'uk':
+    if splited_url[3].split("/")[0] == 'uk':
         splited_url = 'uk'
     else:
         splited_url = splited_url[2].split("/")[0]
@@ -47,26 +48,26 @@ def get_webcontent(url):
 
     pattern = 'price_with_currency.\".{0,9}.\"'
     raw_prices = re.findall(pattern, content) # Parse the entire WebPage, search 'price_with_currency*€'
-    print(raw_prices) ## debug
+    #print(raw_prices) ## debug
 
     price_lst = []
 
     for price in raw_prices:
         try: # because of potential problems when loading webpages and inconsistency, use 'try' before any index reference ([.])
-            if currency_symbole == '€':
+            if currency_symbole == '€': ## symbole after price
                 parsed_price = float(price.strip().split('"')[1].split('\xa0')[0].replace(',', '.')) # get rid of all the junk
-            else:
+            else: ## symbole before price
                 parsed_price = float(price.strip().split('"')[1].replace(currency_symbole, ''))
 
             if parsed_price > false_positive_price:
                 price_lst.append(parsed_price) # add the formated price to the price_lst
         except:
-            print("Problem ! {}".format(price))
+            print("Problem with parsing! {}".format(price))
     
-    return price_lst
+    return price_lst, currency_symbole
 
 
-def alerter(price_lst):
+def alerter(price_lst, currency_symbole):
     minimum_price = price_lst[0] # Initialize first minimum price
 
     for price in price_lst: # Gets the actual minimum price
@@ -87,21 +88,18 @@ def get_notify_run_url(config_file):
     return conf_url
 
 
-
 def main():
     for url in url_lst:
         #print(get_webcontent(url))
-        price_lst = get_webcontent(url)
-        #alerter(price_lst)g
-        print(price_lst)
+        price_lst, currency_symbole = get_webcontent(url)
+        #alerter(price_lst, currency_symbole)
+        print(price_lst, currency_symbole)
 
 
 if __name__ == '__main__':
-    url_lst = ['https://www.backmarket.fr/iphone-8-64-go-gris-sideral-debloque-tout-operateur-pas-cher/36827.html']
+    url_lst = ['https://www.backmarket.co.uk/second-hand-iphone-xs-64-gb-space-grey-unlocked/178592.html']
     device_name = 'iPhone X'
     # i.e, iPhone X 64gb Black
-
-    currency_symbole = '$' # TODO add other currency support, $, £ ...
 
     notify_run_url = get_notify_run_url('config.cfg')
     # Create a notify_run channel and replace the url in config file (https://notify.run)
