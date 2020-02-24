@@ -113,7 +113,7 @@ if __name__ == '__main__':
     ## TODO add channel creation with notidy_run module
 
     false_positive_price = 100 # Impossible price for the specified product
-    price_wanted = 450 # Price of the product below which you want to receive a notification
+    price_wanted = 400 # Price of the product below which you want to receive a notification
 
     main()
-    ##dev
+
