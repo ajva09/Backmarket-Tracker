@@ -16,7 +16,7 @@ import requests, re
 def get_currency(url):
 
     currency_dic = {
-        '€': ['fr', 'es', 'it', 'de'],
+        '€': ['fr', 'es', 'it', 'de', 'be', 'at'],
         '$': ['com'],
         '£': ['uk'] ## co.uk
     }
@@ -29,6 +29,10 @@ def get_currency(url):
     else:
         splited_url = splited_url[2].split("/")[0]
     #print(splited_url) ## debug
+    if splited_url == 'at':
+        country = 'at'
+    else:
+        country = 'com'
 
     currency_symbole = "$" ## default, if failed
     
@@ -36,15 +40,15 @@ def get_currency(url):
         if splited_url in value:
             currency_symbole = key
 
-    #print(currency_symbole) ##Debug
-    return currency_symbole
+    #print(currency_symbole, country) ##Debug
+    return currency_symbole, country
 
 
 def get_webcontent(url):
 
     page = requests.get(url)
     content = page.content.decode()
-    currency_symbole = get_currency(url)
+    currency_symbole, country = get_currency(url)
 
     pattern = 'price_with_currency.\".{0,9}.\"'
     raw_prices = re.findall(pattern, content) # Parse the entire WebPage, search 'price_with_currency*€'
@@ -54,8 +58,10 @@ def get_webcontent(url):
 
     for price in raw_prices:
         try: # because of potential problems when loading webpages and inconsistency, use 'try' before any index reference ([.])
-            if currency_symbole == '€': ## symbole after price
+            if currency_symbole == '€' and country != 'at': ## symbole after price
                 parsed_price = float(price.strip().split('"')[1].split('\xa0')[0].replace(',', '.')) # get rid of all the junk
+            elif country == 'at':
+                parsed_price = float(price.strip().split('"')[1].split('\xa0')[1].replace(',', '.'))
             else: ## symbole before price
                 parsed_price = float(price.strip().split('"')[1].replace(currency_symbole, ''))
 
@@ -92,12 +98,13 @@ def main():
     for url in url_lst:
         #print(get_webcontent(url))
         price_lst, currency_symbole = get_webcontent(url)
-        #alerter(price_lst, currency_symbole)
-        print(price_lst, currency_symbole)
+        alerter(price_lst, currency_symbole)
+        #print(price_lst)
+        #print(currency_symbole)
 
 
 if __name__ == '__main__':
-    url_lst = ['https://www.backmarket.co.uk/second-hand-iphone-xs-64-gb-space-grey-unlocked/178592.html']
+    url_lst = ['https://www.backmarket.at/iphone-x-64-gb-space-grau-ohne-vertrag-gebraucht/36833.html']
     device_name = 'iPhone X'
     # i.e, iPhone X 64gb Black
 
