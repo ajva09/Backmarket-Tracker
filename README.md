@@ -1,23 +1,31 @@
 # Backmarket Price Tracker
- BackMarket Price Tracker and Notifier v1.2<br/>
+## BackMarket Price Tracker and Notifier  
 
--- Tested w/ backmarket.fr, untested for backmarket.com, backmarket.co.uk, backmarket.es, backmarket.it etc... -- <br/>
+**Tested w/ all backmarket websites / currency**   
 
-You can send notification to your Android smartphone when a backmarket product drops below a wanted price !<br/>
-Only work with Android devices (background notifications capabilities)
+You can send notification to your Android smartphone when a backmarket product drops below a wanted price !  
 
--- In the config.cfg file --<br/>
-Create a notify.run channel here: https://notify.run/<br/>
-Change the url in the config.cfg file to yours
+**Only work with Android devices** (background notifications capabilities)  
 
--- At the end of the script --<br/>
-Change or Add the Backmarket url(s) of the desired product(s) into 'url_list' i.e differents colors and/or internal storage options<br/>
-Change the 'wanted_price', a notification will be sent once it drops below
+## Instructions:  
+### In the config.cfg file  
+Create a notify.run channel here: [notify.run](https://notify.run)  
+Change the url in the **config.cfg** file to yours
 
-Subscribe to your notidy.run channel on your mobile device
+### In The Script  
+1. Change or Add the Backmarket url(s) [^1] of the desired product(s) into 'url_list' [^2]
+2. Change the 'wanted_price' [^2]
+3. Subscribe to your notify.run channel on your mobile device 
 
-If you have any problems with the script, please submit a ticket under the 'Issues' tab !
+*a notification will be sent once it drops below*
 
-Support for iOS comming soon (PushOver app)
+ 
+**If you have any problems with the script, please submit a ticket under the 'Issues' tab !** 
 
-# 0xlazY #
+> Support for iOS comming soon (PushOver app)
+
+
+[^1]: i.e differents colors and/or internal storage options  
+[^2]: Variables at the End of the script
+
+#### 0xlazY ####
