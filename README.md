@@ -25,7 +25,7 @@ Change the url in the **config.cfg** file to yours
 > Support for iOS comming soon (PushOver app)
 
 
+#### 0xlazY ####
+
 [^1]: i.e differents colors and/or internal storage options  
 [^2]: Variables at the End of the script
-
-#### 0xlazY ####
